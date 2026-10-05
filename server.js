@@ -22,10 +22,10 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 app.get('/api/health', (req, res) => res.json({ ok: true }));
-app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/equipment', require('./routes/equipmentRoutes'));
-app.use('/api/borrow', require('./routes/borrowRoutes'));
-app.use('/api/dashboard', require('./routes/dashboardRoutes'));
+
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/items', require('./routes/items'));
+app.use('/api/loans', require('./routes/loans'));
 
 app.use((req, res) => res.status(404).json({ message: 'Route not found' }));
 app.use(errorHandler);

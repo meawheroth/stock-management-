@@ -5,8 +5,8 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const connectDB = require('./config/db');
-const errorHandler = require('./middleware/errorHandler');
+const connectDB = require('./db');
+const errorHandler = require('./errorHandler');
 
 
 const missing = ['MONGODB_URI', 'JWT_SECRET'].filter((k) => !process.env[k]);

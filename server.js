@@ -8,7 +8,7 @@ const morgan = require('morgan');
 const connectDB = require('./config/db');
 const errorHandler = require('./middleware/errorHandler');
 
-// ตรวจ env ที่จำเป็นก่อนเริ่ม (กัน JWT_SECRET ว่างจนออก token ไม่ได้ตอน runtime)
+
 const missing = ['MONGODB_URI', 'JWT_SECRET'].filter((k) => !process.env[k]);
 if (missing.length) {
   console.error(` Missing env: ${missing.join(', ')}`);
@@ -23,9 +23,9 @@ app.use(morgan('dev'));
 
 app.get('/api/health', (req, res) => res.json({ ok: true }));
 
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/items', require('./routes/items'));
-app.use('/api/loans', require('./routes/loans'));
+app.use('/api/auth', require('./auth'));
+app.use('/api/items', require('./items'));
+app.use('/api/loans', require('./loans'));
 
 app.use((req, res) => res.status(404).json({ message: 'Route not found' }));
 app.use(errorHandler);
